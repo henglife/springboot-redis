@@ -1,0 +1,44 @@
+
+spring:
+
+  ##连接redis
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 0ms
+
+
+  ## 连接mysql
+  application:
+    name: test
+  datasource:
+    url: jdbc:mysql://localhost:3306/yuanchunxue?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+    username: root
+    password: 123456
+    driverClassName: com.mysql.jdbc.Driver
+
+
+    connectionTestQuery: SELECT 1
+    jmx-enabled: true
+    tomcat:
+      jdbc-interceptors: ConnectionState;StatementCache;com.vipkid.tomcat.jdbc.pool.interceptor.SlowQueryReport(threshold=1,maxQueries=5,logSlow=true,logFailed=false)
+
+
+
+
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true  #加了这个配置之后就可以直接把下划线分隔的库表字段自动转换为camel格式，不再需要ResultMap
+
+
+

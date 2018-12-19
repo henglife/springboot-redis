@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.CityMapper">
+
+    <sql id="all_column">
+        id,
+        `provinceId`,
+        `cityName`,
+        `description`
+    </sql>
+
+    <insert id="addCity" parameterType="com.example.demo.domain.CityDomain" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO City
+        (id,provinceId,cityName,description)
+        VALUES
+        (#{id},#{provinceId},#{cityName},#{description})
+    </insert>
+
+    <select id="findAllCity" resultType="com.example.demo.domain.CityDomain">
+        select
+        *
+        from City
+    </select>
+
+    <select id="findById" resultType="com.example.demo.domain.CityDomain">
+        SELECT
+        *
+        FROM City
+        where id = #{id}
+    </select>
+
+    <update id="updateCity" parameterType="com.example.demo.domain.CityDomain">
+        update
+        City
+        set
+        <if test="provinceId!=null">
+            province_id = #{provinceId},
+        </if>
+        <if test="cityName!=null">
+            city_name = #{cityName},
+        </if>
+        <if test="description!=null">
+            description = #{description}
+        </if>
+        where
+        id = #{id}
+    </update>
+
+    <delete id="deleteCity" parameterType="java.lang.Long">
+		delete from
+		City
+		where
+		id = #{id}
+	</delete>
+
+</mapper>
