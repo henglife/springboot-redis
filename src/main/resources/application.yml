@@ -29,7 +29,7 @@ spring:
     connectionTestQuery: SELECT 1
     jmx-enabled: true
     tomcat:
-      jdbc-interceptors: ConnectionState;StatementCache;com.vipkid.tomcat.jdbc.pool.interceptor.SlowQueryReport(threshold=1,maxQueries=5,logSlow=true,logFailed=false)
+      jdbc-interceptors: ConnectionState;StatementCache;
 
 
 

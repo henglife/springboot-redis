@@ -1,16 +1,10 @@
 package com.example.demo.exception.handler;
 
 
-import com.example.demo.exception.CityExistException;
-import com.example.demo.exception.CityNotFoundException;
-import com.example.demo.exception.GeneralException;
-import com.example.demo.exception.OutputErrorInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.example.demo.exception.*;
+import org.slf4j.*;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 
