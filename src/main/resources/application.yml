@@ -33,7 +33,6 @@ spring:
 
 
 
-
 # mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -41,4 +40,5 @@ mybatis:
     map-underscore-to-camel-case: true  #加了这个配置之后就可以直接把下划线分隔的库表字段自动转换为camel格式，不再需要ResultMap
 
 
-
+server:
+  port: 8088

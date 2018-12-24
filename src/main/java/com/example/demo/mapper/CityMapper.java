@@ -15,6 +15,8 @@ public interface CityMapper {
 
     CityDomain findById(Long id);
 
+    CityDomain findByName(String cityName);
+
     Long updateCity(CityDomain city);
 
     Long deleteCity(Long id);

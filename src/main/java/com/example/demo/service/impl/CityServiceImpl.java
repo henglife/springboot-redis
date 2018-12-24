@@ -2,6 +2,8 @@ package com.example.demo.service.impl;
 
 
 import com.example.demo.domain.CityDomain;
+import com.example.demo.exception.CityExistException;
+import com.example.demo.exception.CityNotFoundException;
 import com.example.demo.mapper.CityMapper;
 import com.example.demo.service.CityService;
 import org.slf4j.Logger;
@@ -46,6 +48,10 @@ public class CityServiceImpl implements CityService {
         LOGGER.info("CityServiceImpl.updateCity() : 从数据库中获取的城市 >> ");
         CityDomain city=cityMapper.findById(id);
 
+        //判断拿该id从数据库查询的city是否为空，为空时，抛出异常
+        if (city==null){
+            throw new CityNotFoundException();
+        }
         //插入缓存
         operations.set(key,city);
         LOGGER.info("CityServiceImpl.findCityById() : 城市插入缓存 >> " + city.toString());
@@ -56,6 +62,11 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public Long saveCity(CityDomain city){
+        //在插入城市时，判断城市名字是否跟数据库内的城市有重复的名字
+        //有的话，抛出名字重复的异常
+        if(null!=cityMapper.findByName(city.getCityName())){
+            throw new CityExistException();
+        }
         return cityMapper.addCity(city);
     }
     /**
